@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}home{% endblock %}
+
+{% block content %}
+    <p align="center">HOME PAGE</p>
+
+    <table align="center" border="2">
+        <tr>
+            <th>Full url</th>
+            <th>Short url</th>
+            <th>Date</th>
+            <th>Counter click</th>
+
+        </tr>
+        {% for url in urls %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <a href="{% url 'shorten_url' url.id %}">Short URL</a>
+                    <a href="{% url 'redirect_url' url.id %}">Redirect to full URL</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{#    <p align="center"><a href="{% url 'added_url' %}">Add new URL</a></p>#}
+{% endblock %}
