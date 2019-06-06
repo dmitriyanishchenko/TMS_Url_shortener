@@ -1,9 +1,11 @@
 from django.urls import path
 from .views import (
-    added_url
+    make,
+    home,
 )
 urlpatterns = [
-    path('', added_url, name='added_url'),
+    path('', make, name='make'),
+    path('<str:token>', home, name='Home'),
 
 
 ]

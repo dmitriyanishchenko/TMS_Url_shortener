@@ -1,8 +1,8 @@
 from django import forms
+from .models import Short_urls
 
 
-class UrlForm(forms.Form):
-    full_url = forms.CharField(max_length=150)
-    short_url = forms.CharField(max_length=150)
-    date_add = forms.DateTimeField()
-    counter_click = forms.IntegerField()
+class UrlForm(forms.ModelForm):
+    class Meta:
+        model = Short_urls
+        fields = ['long_url']

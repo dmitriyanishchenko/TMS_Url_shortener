@@ -1,6 +1,6 @@
 from django.contrib import admin
-from shortener.models import ShortUrl
+from .models import Short_urls
 
-admin.site.register(ShortUrl)
+admin.site.register(Short_urls)
 
-# Register your models here.
+
