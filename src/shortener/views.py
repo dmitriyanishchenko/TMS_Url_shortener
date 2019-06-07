@@ -10,27 +10,16 @@ from .shortner import shortner
 HOST ='http://127.0.0.1:8000/'
 
 
-def make(request):
+def url_form_creator(request):
     """
-    Функция вызывает форму для ввода длинного URL
+
 
     """
-    form = UrlForm(request.POST)
-    a = ''
-    if request.method == "POST":
-        if form.is_valid():
-            new_url = form.save()
-            a = shortner().issue_token()
-
-            new_url.save()
-        else:
-            form = UrlForm()
-            a = "Invalid URL"
-    return render(request, 'home.html', {'form': form, 'a': a})
+    urls_data = ShortUrls.objects.all()
+    if request.method == 'GET':
+        context = {'form': UrlForm(), 'urls_data': urls_data, 'HOST': HOST}
+        return render(request, 'home.html', context)
 
 
-def home(request, token):
-    long_url = ShortUrls.objects.filter(short_url=token)[0]
-    return redirect(long_url.long_url)
 
 # Create your views here.

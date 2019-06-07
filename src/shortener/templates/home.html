@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
-{% block title %}home{% endblock %}
+{% block title %}Sortener{% endblock %}
 
 {% block content %}
-    <form method="post">
+    <form action='' method="post">
     {% csrf_token %}
 
     {{ form.as_p }}
-    <button type="submit" name="button">Short</button>
+    <button type="submit" name="button">Shorten</button>
    </form>
 
-    <h1>{{ a }}</h1>
+
 {% endblock %}
