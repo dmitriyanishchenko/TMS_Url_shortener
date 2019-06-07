@@ -3,7 +3,7 @@ from django.shortcuts import (
     render,
     redirect,
 )
-from .models import Short_urls
+from .models import ShortUrls
 from .forms import UrlForm
 from .shortner import shortner
 
@@ -19,7 +19,7 @@ def make(request):
     a = ''
     if request.method == "POST":
         if form.is_valid():
-            new_url = form.save(commit=False)
+            new_url = form.save()
             a = shortner().issue_token()
 
             new_url.save()
@@ -29,9 +29,8 @@ def make(request):
     return render(request, 'home.html', {'form': form, 'a': a})
 
 
-
 def home(request, token):
-    long_url = Short_urls.objects.filter(short_url=token)[0]
+    long_url = ShortUrls.objects.filter(short_url=token)[0]
     return redirect(long_url.long_url)
 
 # Create your views here.
