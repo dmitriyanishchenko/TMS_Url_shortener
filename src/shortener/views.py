@@ -25,7 +25,26 @@ def url_form_creator(request):
             long_url = form.cleaned_data.get('long_url')
             if ShortUrls.objects.filter(long_url=long_url).exists():
                 current_url = ShortUrls.objects.get(long_url=long_url)
-                contex = {'short_url': f'{HOST}/'}
+                context = {'short_url': f'{HOST}/{current_url.short_url}', 'HOST': HOST}
+                return render(request, 'edit_url.html', context)
+            else:
+                current_url = ShortUrls(long_url=long_url)
+                current_url.save()
+                current_url.short_url = base_62_encode(current_url.id)
+                current_url.save()
+                context = {'short_url': f'{HOST}/{current_url.short_url}', 'HOST': HOST}
+                return render(request, 'edit_url.html', context)
+        else:
+            errors = form.errors
+            return HttpResponse(errors)
+    else:
+        return HttpResponse('INVALID REQUEST')
+
+
+
+
+
+
 
 
 
