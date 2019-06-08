@@ -3,12 +3,36 @@
 {% block title %}Sortener{% endblock %}
 
 {% block content %}
-    <form action='' method="post">
-    {% csrf_token %}
+    <div align="center">
+        <p align="center">Link Shortener</p>
+        <form action='' method="post">
+            {% csrf_token %}
 
-    {{ form.as_p }}
-    <button type="submit" name="button">Shorten</button>
-   </form>
+            {{ form.as_p }}
+            <input type="submit" name="submit" value="Shorten"></input>
+        </form>
+    <br>
+    </div>
+
+    <table align="center" border="2">
+        <tr>
+            <th>Original link</th>
+            <th>Short link</th>
+            <th>Date</th>
+            <th>Clicks</th>
+        </tr>
+
+        {% for url in urls_data %}
+
+            <tr>
+                <td>{{ url.long_url }}</td>
+               <td><a href="http:127.0.0.1:8000/{{ url.short_url }}">http://127.0.0.1:8000/{{ url.short_url }}</a></td>
+                <td>{{ url.date_add }}</td>
+                <td>{{ url.counter }}</td>
+            </tr>
+
+        {% endfor %}
 
 
+    </table>
 {% endblock %}
