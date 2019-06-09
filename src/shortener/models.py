@@ -2,7 +2,7 @@ from django.db import models
 
 
 class ShortUrls(models.Model):
-    long_url = models.URLField("URL", unique=True)
+    long_url = models.URLField()
     short_url = models.CharField(max_length=20)
     date_add = models.DateTimeField(auto_now_add=True)
     counter = models.IntegerField(default=0)

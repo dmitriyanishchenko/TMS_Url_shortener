@@ -2,10 +2,13 @@ from django.http import HttpResponse
 from django.shortcuts import (
     render,
     redirect,
+    get_object_or_404
 )
+
+from shortener.functions import base_62_decode
+from shortener.functions import base_62_encode
 from .models import ShortUrls
 from .forms import UrlForm
-from .shortner import shortner
 
 HOST ='http://127.0.0.1:8000'
 
@@ -39,6 +42,18 @@ def url_form_creator(request):
             return HttpResponse(errors)
     else:
         return HttpResponse('INVALID REQUEST')
+
+
+def redirect_to_long_url(request, link_id):
+    if request.method == 'GET':
+        id = base_62_decode(link_id)
+        url = get_object_or_404(ShortUrls, id=id)
+        url.counter += 1
+        url.save()
+        return redirect(url.long_url)
+    return HttpResponse('INVALID REQUEST')
+
+
 
 
 

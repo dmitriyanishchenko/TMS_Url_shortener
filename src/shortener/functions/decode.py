@@ -16,5 +16,4 @@ def base_62_decode(link_id, alphabet=BASE62):
         power = (link_id_length - (idx + 1))
         url_id += alphabet.index(char) * (base ** power)
         idx += 1
-
     return url_id

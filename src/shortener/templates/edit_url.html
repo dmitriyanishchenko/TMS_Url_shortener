@@ -1,0 +1,20 @@
+{% extends 'base.html' %}>
+
+{% block title %}
+    {{ short_url }}
+{% endblock %}
+
+{% block content %}
+<div align="center">
+    <h3><a href="{{ HOST }}">Go Back</a></h3>
+    <p></p>
+<table>
+    <tr>
+        <td><input type="text" id="myShortUrl" value="{{ short_url }}"></td>
+        <td><button onclick="myFunctionCopy()">Copy</button> </td>
+    </tr>
+</table>
+    <h3 id="x"></h3>
+</div>
+
+{% endblock %}
