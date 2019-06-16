@@ -1,19 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import (
-    render,
-    redirect,
-    get_object_or_404
+     redirect,
+     get_object_or_404,
 )
-
 from shortener.functions import base_62_decode
-from shortener.functions import base_62_encode
-from .models import ShortUrls
-from .forms import UrlForm
+from shortener.models import ShortUrls
 
 HOST ='http://127.0.0.1:8000'
-
-
-
 
 
 def redirect_to_long_url(request, link_id):
@@ -39,6 +32,3 @@ def redirect_to_long_url(request, link_id):
 
 
 
-
-
-# Create your views here.
