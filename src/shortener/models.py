@@ -11,6 +11,4 @@ class ShortUrls(models.Model):
         ordering = ['-counter']
 
     def __str__(self):
-        return f' {self.long_url} | {self.counter}'
-
-# Create your models here.
+        return f' {self.long_url}'

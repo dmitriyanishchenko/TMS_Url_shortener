@@ -13,14 +13,14 @@ from .forms import UrlForm
 HOST ='http://127.0.0.1:8000'
 
 
-def url_form_creator(request):
+def url_form_handler(request):
     """
     Направляет на домашнюю страницу и обрабатывает форму
 
     """
-    urls_data = ShortUrls.objects.all()
+    urls_from_db = ShortUrls.objects.all()
     if request.method == 'GET':
-        context = {'form': UrlForm(), 'urls_data': urls_data, 'HOST': HOST}
+        context = {'form': UrlForm(), 'urls_from_db': urls_from_db, 'HOST': HOST}
         return render(request, 'home.html', context)
     elif request.method == "POST":
         form = UrlForm(request.POST)
